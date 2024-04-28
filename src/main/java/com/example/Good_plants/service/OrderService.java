@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    public Order create(OrderDTO dto) {
+    public Order create(String amount, String product_set) {
         Order order = Order.builder()
-                .amount(dto.getAmount())
-                .product_set(dto.getProduct_set())
+                .amount(amount)
+                .product_set(product_set)
                 .build();
         return orderRepository.save(order);
     }

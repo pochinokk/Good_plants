@@ -40,12 +40,12 @@ public class AdminController {
         }
         return "admin";
     }
-
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public ResponseEntity<Product> create(@RequestParam String name, @RequestParam String price, Model model) {
-        ProductDTO dto = new ProductDTO(name, price);
-        return new ResponseEntity<>(productService.create(dto), HttpStatus.OK);
-    }
+// Пока думаааю!!!!
+//    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+//    public ResponseEntity<Product> create(@RequestParam String name, @RequestParam String price, Model model) {
+//        ProductDTO dto = new ProductDTO(name, price);
+//        return new ResponseEntity<>(productService.create(dto), HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/admin", method = RequestMethod.DELETE)
     public void delete(@RequestParam Long delete_id, Model model) {

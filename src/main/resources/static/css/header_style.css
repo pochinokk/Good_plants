@@ -15,7 +15,9 @@ header{
     height: 80px;
     /* background: rgb(32, 166, 14); */
     /* background: rgb(21, 107, 10); */
-    background: rgb(25, 129, 12);;
+    background: rgb(25, 129, 12);
+    /* background: rgb(15, 72, 7); */
+    /* background: rgb(39,27,41); */
     position: sticky;
     top:0;
     z-index: 200;

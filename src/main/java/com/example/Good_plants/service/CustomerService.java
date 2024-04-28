@@ -14,10 +14,11 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private PasswordEncoder passwordEncoder;
-    public Customer create(CustomerDTO dto) {
+    public Customer create(String username, String password, String roles) {
         Customer customer = Customer.builder()
-                .name(dto.getName())
-                .password(dto.getPassword())
+                .name(username)
+                .password(password)
+                .roles(roles)
                 .build();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepository.save(customer);

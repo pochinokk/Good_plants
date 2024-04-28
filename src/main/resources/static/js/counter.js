@@ -4,6 +4,7 @@ var inputs = document.querySelectorAll(".counter_input input");
 var prices = document.querySelectorAll(".product_price");
 var sum_input = document.querySelector(".sum input");
 var number_input = document.querySelector(".number input");
+var frm = document.getElementById('frm');
 var sum = 0;
 var number = 0;
 for (var i = 0; i <inputs.length; i++) {
@@ -37,9 +38,9 @@ if (counters)
             else if(target.closest(".minus_button")){
                 let value = parseInt(target.closest('.counter').querySelector('input').value);
                 value--;
-                if(value <= 1)
+                if(value <= 0)
                 {
-                    value = 1;
+                    value = 0;
                 }
                 console.log(number);
                 target.closest('.counter').querySelector('input').value = value;
@@ -62,8 +63,35 @@ if (counters)
             {
               number_input.value = number + " шт.";
             }
-
-
+            const productDivs = document.querySelectorAll('.products .product');
+            productDivs.forEach(productDiv => {
+                const input = productDiv.querySelector('.counter input');
+                input.style.background = (parseInt(input.value) > 0) ? 'rgb(214, 255, 149)' : 'white';
+                productDiv.style.background = (parseInt(input.value) > 0) ? 'rgb(214, 255, 149)' : 'white';
+            });
         })
     })
+}
+frm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const value = create_response_string();
+  const hiddenInput = document.getElementById('hidden_input');
+  hiddenInput.value = value;
+  frm.submit();
+});
+
+
+function create_response_string() {
+  let result = '';
+
+  const counterInputs = document.querySelectorAll('.counter_input input');
+
+  counterInputs.forEach(input => {
+      const quantity = parseInt(input.value);
+      if (quantity > 0) {
+          const productName = input.closest('.product').querySelector('.product_name').innerText;
+          result += productName + "=" + quantity + ",";
+      }
+  });
+  return result;
 }

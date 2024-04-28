@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
-    public Product create(ProductDTO dto) {
+    public Product create(String name, String price) {
         Product product = Product.builder()
-                .name(dto.getName())
-                .price(dto.getPrice())
+                .name(name)
+                .price(price)
                 .build();
         return productRepository.save(product);
     }

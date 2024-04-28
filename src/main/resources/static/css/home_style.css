@@ -63,12 +63,13 @@
 .cell_text{
     /* background: rgb(230, 255, 182); */
     border-radius: 25px;
-    padding: 25px;
+    padding: 30px;
     transition: transform 0.35s ease;
     font-size: 25px;
     /* width: 650px; */
     /* background: white; */
-     background: rgb(176, 255, 115);
+     /* background: rgb(176, 255, 115); */
+    background: rgb(222, 255, 176);
     /*background: linear-gradient(0deg,rgba(185,255,76,1) 0%, rgb(230, 255, 182) 100%); */
     /* border: 1px solid silver; */
 }

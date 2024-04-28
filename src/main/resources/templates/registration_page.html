@@ -54,21 +54,12 @@
         </header>
         <main>
             <div class="container">
-                <div th:if="${param.error}" class = "auth error">
-                    <p>Ошибка авторизации</p>
-                </div>
-                <div th:if="${param.message}" class = "auth message1">
-                    <p>Вы успешно зарегистрировались</p>
-                </div>
-                <div th:if="${param.message}" class = "auth message2">
-                    <p>Теперь вы можете авторизоваться</p>
-                </div>
-                <div class = "form-box">
-                    <div class = "form-value">
-                        <form action="/authenticate" method="post">
-                            <h2 class = "word_auth">Вход</h2>
+                <div class="form-box">
+                    <div class="form-value">
+                        <form class = "reg_form" action="/register" method="post">
+                            <h2 class = "word_registr">Регистрация</h2>
                             <div class="inputbox">
-                                <img class = "mail" src="/images/icons/white_mail.png" alt="" width="23">
+                                <img class="mail" src="/images/icons/white_mail.png" alt="" width="23">
                                 <input type="text" name="username" required>
                                 <label for="">Имя</label>
                             </div>
@@ -77,10 +68,7 @@
                                 <input type="password" name="password" required>
                                 <label for="">Пароль</label>
                             </div>
-                            <button type="submit">Войти</button>
-                            <div class="register">
-                                <p><a href="/registration">Регистрация</a></p>
-                            </div>
+                            <button type="submit">Зарегистрироваться</button>
                         </form>
                     </div>
                 </div>
