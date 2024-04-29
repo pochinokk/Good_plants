@@ -38,6 +38,12 @@ public class SecurityConfig {
                         .loginPage("/authentication")
                         .loginProcessingUrl("/authenticate")
                         .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/home")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                )
 //                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }

@@ -202,6 +202,23 @@ header{
 .nav-link:hover::after{
     transform: scaleX(1);
 }
+
+#user_name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 20px;
+  top: 21px;
+  color: white;
+  border-radius: 4px;
+  padding: 7px;
+  background:rgb(0, 93, 12);
+}
+#user_name p{
+  font-size: 17px;
+  font-weight: 500;
+}
 /*Корзина*/
 .shopping-cart {
   position: fixed;

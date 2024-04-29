@@ -77,7 +77,17 @@ frm.addEventListener('submit', function(event) {
   const value = create_response_string();
   const hiddenInput = document.getElementById('hidden_input');
   hiddenInput.value = value;
-  frm.submit();
+  const er = document.getElementById('order_error');
+  if (number != 0)
+  {
+    frm.submit();
+  }
+  else
+  {
+    console.log("flex");
+    er.style.display = "flex";
+  }
+
 });
 
 
@@ -90,8 +100,12 @@ function create_response_string() {
       const quantity = parseInt(input.value);
       if (quantity > 0) {
           const productName = input.closest('.product').querySelector('.product_name').innerText;
-          result += productName + "=" + quantity + ",";
+          result += productName + " " + quantity + "шт., ";
       }
   });
+  if(result.length > 2)
+  {
+      result = result.substring(0, result.length - 2);
+  }
   return result;
 }

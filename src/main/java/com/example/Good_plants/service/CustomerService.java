@@ -14,14 +14,25 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private PasswordEncoder passwordEncoder;
-    public Customer create(String username, String password, String roles) {
+    public Customer create(String username, String password, String roles, String tel, String address) {
         Customer customer = Customer.builder()
                 .name(username)
                 .password(password)
                 .roles(roles)
+                .tel(tel)
+                .address(address)
                 .build();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepository.save(customer);
+    }
+    public boolean exists(String username) {
+        List<Customer> customers = customerRepository.findAll();
+        for (Customer cust : customers){
+            if (cust.getName().equals(username)){
+                return true;
+            }
+        }
+        return false;
     }
     public List<Customer> readAll() {
         return customerRepository.findAll();

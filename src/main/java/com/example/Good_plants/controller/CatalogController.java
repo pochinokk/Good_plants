@@ -7,25 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HomeController {
-    @GetMapping("/")
-    public String main(Model model) {
+public class CatalogController {
+    @GetMapping("/catalog")
+    public String plant_care(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         if (username.equals("anonymousUser")) {
             username = "Вы не авторизованы";
         }
         model.addAttribute("username", username);
-        return "index";
-    }
-    @GetMapping("/home")
-    public String home(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        if (username.equals("anonymousUser")) {
-            username = "Вы не авторизованы";
-        }
-        model.addAttribute("username", username);
-        return "index";
+        return "catalog_page";
     }
 }

@@ -18,6 +18,9 @@ public class CustomerDetails implements UserDetails {
 
     private Customer customer;
 
+    public Long getId() {
+        return customer.getId();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(customer.getRoles().split(", "))

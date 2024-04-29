@@ -23,7 +23,7 @@ public class Order {
     private String product_set;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "customer_id")
     @JsonIgnore
     private Customer customer;
 

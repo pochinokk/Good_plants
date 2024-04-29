@@ -19,6 +19,8 @@ public class Customer {
     private String name;
     private String password;
     private String roles;
+    private String tel;
+    private String address;
 
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
