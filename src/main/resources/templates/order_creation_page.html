@@ -60,6 +60,9 @@
             <div th:if="${param.message}" id="successful_order">
                 <p>Заказ успешно создан</p>
             </div>
+            <div th:if="${param.error}" id="server_error" >
+                <p th:text="${er}"></p>
+            </div>
             <div class = "container">
                 <p class="bin_title">Выберите растения</p>
                 <div class ="cart">
@@ -87,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div id="order_error">
+                    <div id="empty_error">
                         <p>Вы ничего не выбрали</p>
                     </div>
 
@@ -97,7 +100,7 @@
                                 <p class="sum_title">Итого:</p>
                             </div>
                             <div class="sum">
-                                <input type="text" name = "amount" readonly value="0₽"> <!-- на сервер -->
+                                <input type="text" name = "amount" disable value="0₽"> <!-- на сервер -->
                             </div>
                         </div>
                         <div class="number_of_products">
@@ -149,8 +152,8 @@
                 </div>
                 <div class="box box2">
                     <u>Ссылки</u>
-                    <p><a href="catalog_page.html">Растения</a></p>
-                    <p><a href="plant_care_page.html">Советы</a></p>
+                    <p><a href="/catalog">Растения</a></p>
+                    <p><a href="/plant_care">Советы</a></p>
                 </div>
         </footer>
     </body>

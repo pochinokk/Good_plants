@@ -100,7 +100,7 @@ function create_response_string() {
       const quantity = parseInt(input.value);
       if (quantity > 0) {
           const productName = input.closest('.product').querySelector('.product_name').innerText;
-          result += productName + " " + quantity + "шт., ";
+          result += productName + "_" + quantity + "шт., ";
       }
   });
   if(result.length > 2)

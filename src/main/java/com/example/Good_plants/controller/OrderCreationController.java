@@ -16,6 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @PreAuthorize("hasAuthority('USER')")
@@ -43,17 +47,31 @@ public class OrderCreationController {
 
 
     @PostMapping("/save_order")
-    public String createOrder(@RequestParam String amount, @RequestParam String str) {
+    public String createOrder(@RequestParam String str, Model model, RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof CustomerDetails) {
+//        if (authentication != null && authentication.getPrincipal() instanceof CustomerDetails) {
             CustomerDetails customerDetails = (CustomerDetails) authentication.getPrincipal();
             Long customer_id = customerDetails.getId();
-            orderService.create(amount, str, customer_id);
-            System.out.println(amount);
+            String amount = orderService.getOrderAmount(str);
+            str= str.replace("_", " ");
+
             System.out.println(str);
-            return "redirect:/order_creation?message";
-        }
-        return "redirect:/authentication";
+            System.out.println(amount);
+            if (!amount.equals("-1"))
+            {
+//                orderService.create(amount, str, customer_id);
+                System.out.println("OK");
+                return "redirect:/order_creation?message";
+            }
+            else{
+                System.out.println("Bad");
+                redirectAttributes.addFlashAttribute("er", "Ошибка создания заказа");
+                return "redirect:/order_creation?error";
+            }
+
+
+//        }
+//        return "redirect:/authentication";
     }
 
 }

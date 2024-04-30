@@ -6,7 +6,7 @@
         <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         <title>Good plants</title>
         <link rel="icon" href="/images/icons/favicon.ico" sizes = "any">
-        <link rel="stylesheet" href="/css/account_style.css">
+        <link rel="stylesheet" href="/css/admin_style.css">
         <link rel="stylesheet" href="/css/header_style.css">
         <link rel="stylesheet" href="/css/footer_style.css">
         <script src = "/js/burger.js" defer></script>
@@ -57,28 +57,61 @@
         </header>
     <main>
 
+        <!-- Выход -->
         <form id="account_info" action="/logout" method="post">
-            <p th:text="'Ваш аккаунт: ' + ${username}"></p>
+            <p th:text="'Администратор: ' + ${username}"></p>
             <button id="logout_btn" type="submit">Выйти</button>
         </form>
- 
-        <div id="order_list">
-            <div th:each="ord : ${orders}" class="order">
-            <p>
-                <strong th:text="'ID заказа: '"></strong>
-                <span th:text="${ord.id}"></span>
-            </p>
-            <p>
-                <strong th:text="'Сумма заказа: '"></strong>
-                <span th:text="${ord.amount} + '₽'"></span>
-            </p>
-            <p>
-                <strong th:text="'Товары: '"></strong>
-                <span th:text="${ord.product_set}"></span>
-            </p>
-            </div>
-        </div>
 
+        <!-- Добавление -->
+        <form action="/save_admin_order" method="post">
+            <p>Добавить заказ</p>
+            <button id="save_btn" type="submit">Добавить</button>
+            <div class="inputbox">
+                <input type="text" name="name" required>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="product_set" required>
+            </div>
+        </form>
+
+
+        <!-- Удаление -->
+        <form action="/delete_order" method="post">
+            <p>Удалить заказ по его ID</p>
+            <button id="delete_btn" type="submit">Удалить</button>
+            <div class="inputbox">
+                <input type="text" name="id" required>
+            </div>
+        </form>
+
+        <!-- Поиск заказа его по ID -->
+        <form action="/find_order_by_ID" method="post">
+            <p>Найти заказ по его ID</p>
+            <button id="find_by_ID_btn" type="submit">Найти</button>
+            <div class="inputbox">
+                <input type="text" name="id" required>
+            </div>
+            <div id="НАЙДЕННЫЙ ЗАКАЗ">
+                <!-- ДОДЕЛАТЬ -->
+            </div>
+        </form>
+
+
+        <!-- Поиск всех заказов пользователя -->
+        <form action="/find_customer_orders" method="post">
+            <p>Найти заказы пользователя</p>
+            <button id="find_orders_btn" type="submit">Найти</button>
+            <div class="inputbox">
+                <input type="text" name="name" required>
+            </div>
+            <div id="НАЙДЕННЫЕ ЗАКАЗЫ">
+                <!-- ДОДЕЛАТЬ -->
+            </div>
+        </form>
+
+
+        
     </main>
     <footer class = "footer_wrapper">
         <div class="box box1">

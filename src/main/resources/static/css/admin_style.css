@@ -15,7 +15,12 @@ main{
     padding-bottom: 250px;
 }
 
-#logout_btn{
+#logout_btn, 
+#save_btn, 
+#delete_btn, 
+#find_by_ID_btn, 
+#find_orders_btn
+{
     font-weight: 500;
     border: none;
     font-size: 20px;

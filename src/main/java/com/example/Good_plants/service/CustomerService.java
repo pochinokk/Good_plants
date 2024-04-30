@@ -4,6 +4,7 @@ import com.example.Good_plants.dto.CustomerDTO;
 import com.example.Good_plants.entity.Customer;
 import com.example.Good_plants.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
