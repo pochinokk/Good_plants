@@ -21,8 +21,6 @@ public class Customer {
     private String roles;
     private String tel;
     private String address;
-
-
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 }

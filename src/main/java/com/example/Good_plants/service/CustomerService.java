@@ -1,10 +1,9 @@
 package com.example.Good_plants.service;
 
-import com.example.Good_plants.dto.CustomerDTO;
+
 import com.example.Good_plants.entity.Customer;
 import com.example.Good_plants.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private PasswordEncoder passwordEncoder;
-    public Customer create(String username, String password, String roles, String tel, String address) {
+    public void create(String username, String password, String roles, String tel, String address) {
         Customer customer = Customer.builder()
                 .name(username)
                 .password(password)
@@ -24,7 +23,7 @@ public class CustomerService {
                 .address(address)
                 .build();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer);
+        customerRepository.save(customer);
     }
     public boolean exists(String username) {
         List<Customer> customers = customerRepository.findAll();
@@ -34,6 +33,15 @@ public class CustomerService {
             }
         }
         return false;
+    }
+    public Long getIDByName(String username) {
+        List<Customer> customers = customerRepository.findAll();
+        for (Customer cust : customers){
+            if (cust.getName().equals(username)){
+                return cust.getId();
+            }
+        }
+        return (long) -1;
     }
     public List<Customer> readAll() {
         return customerRepository.findAll();

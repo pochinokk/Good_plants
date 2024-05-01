@@ -59,10 +59,10 @@
                 <div th:if="${param.error}" class = "auth error">
                     <p>Ошибка авторизации</p>
                 </div>
-                <div th:if="${param.message}" class = "auth message1">
-                    <p>Вы успешно зарегистрировались</p>
+                <div th:if="${mes != null}" class = "auth message1">
+                    <p th:text="${mes}"></p>
                 </div>
-                <div th:if="${param.message}" class = "auth message2">
+                <div th:if="${mes != null}" class = "auth message2">
                     <p>Теперь вы можете авторизоваться</p>
                 </div>
                 <div class = "form-box">

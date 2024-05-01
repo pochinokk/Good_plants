@@ -1,6 +1,5 @@
 package com.example.Good_plants.service;
 
-import com.example.Good_plants.dto.OrderDTO;
 import com.example.Good_plants.entity.Customer;
 import com.example.Good_plants.entity.Order;
 import com.example.Good_plants.entity.Product;
@@ -8,6 +7,7 @@ import com.example.Good_plants.repository.CustomerRepository;
 import com.example.Good_plants.repository.OrderRepository;
 import com.example.Good_plants.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,18 +16,27 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class OrderService {
-    private final OrderRepository orderRepository;
+
     private final CustomerRepository customerRepository;
+    private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
-    public Order create(String amount, String product_set, Long customer_id) {
+    public void create(String amount, String product_set, Long customer_id) {
         Customer customer = customerRepository.findById(customer_id)
                 .orElseThrow(() -> new RuntimeException("Пользователь не найден"));
         Order order = Order.builder()
-                .customer(customer)
                 .amount(amount)
                 .product_set(product_set)
                 .build();
-        return orderRepository.save(order);
+        orderRepository.save(order);
+    }
+    public boolean exists(Long id) {
+        List<Order> orders = orderRepository.findAll();
+        for (Order order : orders){
+            if (order.getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
     public String getOrderAmount(String str) {
         int amount = 0;
@@ -69,10 +78,16 @@ public class OrderService {
     public List<Order> readAll() {
         return orderRepository.findAll();
     }
-    public Order update(Order order) {
-        return orderRepository.save(order);
+
+    public Order getOrderByID(Long order_id){
+        List<Order> orders = orderRepository.findAll();
+        for (Order order : orders){
+            if (order.getId().equals(order_id)){
+                return order;
+            }
+        }
+        return null;
     }
-    public void delete(Long id) {
-        orderRepository.deleteById(id);
-    }
+
+    public void delete(Long id) {orderRepository.deleteById(id);}
 }

@@ -1,6 +1,5 @@
 package com.example.Good_plants.service;
 
-import com.example.Good_plants.dto.ProductDTO;
 import com.example.Good_plants.entity.Product;
 import com.example.Good_plants.repository.ProductRepository;
 import lombok.AllArgsConstructor;

@@ -3,19 +3,54 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
-
+}
+#account_info{
+    font-size: 22px;
+}
+.inputbox input{
+    font-size: 18px;
+}
+/* .inputbox{
+    width: 150px;
+} */
+#product_set_input{
+    width: 300px;
+}
 main{
     display: grid;
     grid-auto-flow: row;
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 50px 50px 0px 50px;
+    gap: 35px;
+    padding: 50px 50px 0px 100px;
     font-size: 20px;
     padding-bottom: 250px;
 }
+#server_error, #successful_order{
 
-#logout_btn, 
+    position:relative;
+    height: 80px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+
+}
+#successful_order{
+    display:flex;
+    width: 260px;
+    background: rgba(166, 239, 167, 0.55);
+    border: 3px solid rgb(97, 255, 17);
+}
+#server_error{
+    display:flex;
+    width: 260px;
+    background: rgba(240, 168, 168, 0.55);
+    border: 3px solid rgba(240, 168, 168);
+}
+
+#logout_btn,
 #save_btn, 
 #delete_btn, 
 #find_by_ID_btn, 
@@ -26,7 +61,6 @@ main{
     font-size: 20px;
     color: white;
     text-align: center;
-    background-color: rgb(207, 19, 19);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -35,7 +69,9 @@ main{
     line-height: 15px;
     white-space: nowrap;
 }
-
+#logout_btn{
+    background-color: rgb(207, 19, 19);
+}
 #logout_btn:hover{
     background: rgb(255, 0, 0);
     transform: scale(1.05);
@@ -44,12 +80,43 @@ main{
     background: rgb(143, 14, 14);
     transform: scale(0.95);
 }
+#save_btn, 
+#delete_btn, 
+#find_by_ID_btn, 
+#find_orders_btn
+{
+    background-color: rgb(0, 110, 0);
+}
 
-#account_info{
+#save_btn:hover, 
+#delete_btn:hover, 
+#find_by_ID_btn:hover, 
+#find_orders_btn:hover{
+    background: rgb(0, 151, 0);
+    transform: scale(1.05);
+}
+#save_btn:active, 
+#delete_btn:active, 
+#find_by_ID_btn:active, 
+#find_orders_btn:active{
+    background: rgb(0, 68, 0);
+    transform: scale(0.95);
+}
+#save_btn{
+    width: 110px;
+}
+
+
+
+
+
+
+.text_and_btn{
     font-weight: 600;
     display: flex;
     gap: 20px;
     align-items: center;
+    margin-bottom: 10px;
 }
 #order_list{
     display: grid;

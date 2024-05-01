@@ -19,10 +19,4 @@ public class Product {
     private String name;
     @Column(name = "price")
     private String price;
-
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "order_id", insertable = false, updatable = false)
-//    @JsonIgnore
-//    private Order order;
 }

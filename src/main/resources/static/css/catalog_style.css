@@ -295,26 +295,7 @@ main{
     text-align: center;
 }
 
-.button{
-    border: none;
-    font-size: 16px;
-    color: white;
-    padding: 8px 16px;
-    background-color: darkgreen;
-    border-radius: 6px;
-    margin: 7px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
 
-.button:hover{
-    background: rgb(0, 151, 0);
-    transform: scale(1.1);
-}
-.button:active{
-    background: rgb(0, 151, 0);
-    transform: scale(0.9);
-}
 
 .btn{
     border: none;

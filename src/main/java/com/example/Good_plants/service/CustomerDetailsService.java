@@ -21,6 +21,6 @@ public class CustomerDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Customer> customer = repository.findByName(username);
         return customer.map(CustomerDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException(username + "not found"));
+                .orElseThrow(() -> new UsernameNotFoundException(username + "не найден"));
     }
 }

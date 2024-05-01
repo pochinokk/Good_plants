@@ -1,7 +1,6 @@
 package com.example.Good_plants.config;
 
 import com.example.Good_plants.service.CustomerDetailsService;
-import com.example.Good_plants.service.CustomerDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
