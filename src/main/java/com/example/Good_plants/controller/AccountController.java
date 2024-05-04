@@ -36,11 +36,11 @@ public class AccountController {
 
         boolean isAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ADMIN"));
-
+        Long id = customerService.getIDByName(username);
         if (isAdmin) {
             return "admin_page";
         } else {
-            Iterable<Order> orders = orderService.readAll();
+            Iterable<Order> orders = orderService.readAllByUserId(id);
             model.addAttribute("orders", orders);
             return "account_page";
         }
@@ -57,8 +57,8 @@ public class AccountController {
         System.out.println(str);
         System.out.println(amount);
         System.out.println(customer_id);
-        if (!amount.equals("-1") && customer_id > 0) {
-//            orderService.create(amount, str, customer_id);
+        if (!amount.equals("-1") && !amount.equals("0") && customer_id > 0) {
+            orderService.create(amount, str, customer_id);
             System.out.println("OK");
             redirectAttributes.addFlashAttribute("mes", "Заказ успешно создан");
             return "redirect:/account";
@@ -110,8 +110,9 @@ public class AccountController {
     public String find_customer_orders(@RequestParam("username") String username,
                                        Model model, RedirectAttributes redirectAttributes) {
         if (customerService.exists(username) && !username.equals("anonymousUser")) {
-            Iterable<Order> orders = orderService.readAll();
-            model.addAttribute("orders", orders);
+            Long id = customerService.getIDByName(username);
+            Iterable<Order> orders = orderService.readAllByUserId(id);
+            redirectAttributes.addFlashAttribute("orders", orders);
             return "redirect:/account";
         }
         redirectAttributes.addFlashAttribute("er", "Такого пользователя нет");

@@ -14,7 +14,15 @@ main{
     font-size: 20px;
     padding-bottom: 250px;
 }
-
+#orders_title,
+#empty_title
+{
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 22px;
+    color: black;
+    white-space: nowrap;
+}
 #logout_btn{
     font-weight: 500;
     border: none;

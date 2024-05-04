@@ -61,7 +61,8 @@
             <p th:text="'Ваш аккаунт: ' + ${username}"></p>
             <button id="logout_btn" type="submit">Выйти</button>
         </form>
- 
+        <p id="orders_title">Ваши заказы:</p>
+        <p id="empty_title" th:if="${#lists.isEmpty(orders)}">Заказов нет</p>
         <div id="order_list">
             <div th:each="ord : ${orders}" class="order">
             <p>

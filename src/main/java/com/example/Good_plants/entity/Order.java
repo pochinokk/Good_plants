@@ -21,12 +21,8 @@ public class Order {
     private String amount;
     @Column(name = "product_set")
     private String product_set;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonIgnore
     private Customer customer;
-
-//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Product> products;
 }

@@ -91,7 +91,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 380px;
+    width: 400px;
     height: 540px;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.8);
@@ -118,7 +118,7 @@ h2{
 .inputbox{
     position: relative;
     margin: 30px 0 15px;
-    width: 310px;
+    width: 340px;
     border-bottom: 2px solid white;
 }
 
@@ -139,7 +139,7 @@ h2{
     border: none;
     outline: none;
     font-size: 20px;
-    padding: 0 35px 0 5px;
+    padding: 0 5px 0 5px;
     color: white;
 }
 /* 

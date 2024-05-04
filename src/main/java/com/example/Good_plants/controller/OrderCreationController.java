@@ -31,7 +31,7 @@ public class OrderCreationController {
     private OrderService orderService;
 
     @GetMapping("/order_creation")
-    public String positions(Model model, HttpSession session) {
+    public String positions(@RequestParam(value = "sort_type", required = false) String sort_type, Model model, HttpSession session) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         session.setAttribute("username", username);
@@ -39,8 +39,22 @@ public class OrderCreationController {
             username = "Вы не авторизованы";
         }
         model.addAttribute("username", username);
-
         Iterable<Product> positions = productService.readAll();
+        if (sort_type != null)
+        {
+            if(sort_type.equals("name"))
+            {
+                positions = productService.readAllSortedByName();
+            }
+            else if(sort_type.equals("ascend"))
+            {
+                positions = productService.readAllSortedByPriceAscending();
+            }
+            else if(sort_type.equals("descend"))
+            {
+                positions = productService.readAllSortedByPriceDescending();
+            }
+        }
         model.addAttribute("positions", positions);
         return "order_creation_page";
     }
@@ -49,29 +63,23 @@ public class OrderCreationController {
     @PostMapping("/save_order")
     public String createOrder(@RequestParam String str, Model model, RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.getPrincipal() instanceof CustomerDetails) {
-            CustomerDetails customerDetails = (CustomerDetails) authentication.getPrincipal();
-            Long customer_id = customerDetails.getId();
-            String amount = orderService.getOrderAmount(str);
-            str= str.replace("_", " ");
-
-            System.out.println(str);
-            System.out.println(amount);
-            if (!amount.equals("-1"))
-            {
-//                orderService.create(amount, str, customer_id);
-                System.out.println("OK");
-                return "redirect:/order_creation?message";
-            }
-            else{
-                System.out.println("Bad");
-                redirectAttributes.addFlashAttribute("er", "Ошибка создания заказа");
-                return "redirect:/order_creation?error";
-            }
-
-
-//        }
-//        return "redirect:/authentication";
+        CustomerDetails customerDetails = (CustomerDetails) authentication.getPrincipal();
+        Long customer_id = customerDetails.getId();
+        String amount = orderService.getOrderAmount(str);
+        str= str.replace("_", " ");
+        System.out.println(str);
+        System.out.println(amount);
+        if (!amount.equals("-1"))
+        {
+            orderService.create(amount, str, customer_id);
+            System.out.println("OK");
+            return "redirect:/order_creation?message";
+        }
+        else{
+            System.out.println("Bad");
+            redirectAttributes.addFlashAttribute("er", "Ошибка создания заказа");
+            return "redirect:/order_creation?error";
+        }
     }
 
 }

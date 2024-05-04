@@ -26,6 +26,7 @@ public class OrderService {
         Order order = Order.builder()
                 .amount(amount)
                 .product_set(product_set)
+                .customer(customer)
                 .build();
         orderRepository.save(order);
     }
@@ -38,6 +39,8 @@ public class OrderService {
         }
         return false;
     }
+
+
     public String getOrderAmount(String str) {
         int amount = 0;
         List<List<String>> order_list = new ArrayList<>();
@@ -77,6 +80,19 @@ public class OrderService {
     }
     public List<Order> readAll() {
         return orderRepository.findAll();
+    }
+
+    public List<Order> readAllByUserId(Long id) {
+        List<Order> orders = orderRepository.findAll();
+        List<Order> filtered_orders = new ArrayList<>();
+        for(Order order : orders)
+        {
+            if(order.getCustomer().getId().equals(id))
+            {
+                filtered_orders.add(order);
+            }
+        }
+        return filtered_orders;
     }
 
     public Order getOrderByID(Long order_id){

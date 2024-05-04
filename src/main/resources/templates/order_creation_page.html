@@ -65,6 +65,11 @@
             </div>
             <div class = "container">
                 <p class="bin_title">Выберите растения</p>
+                <form id="sort_form" action="/order_creation" method="get">
+                    <button id="sort_btn1" type="submit" name="sort_type" value="name">По алфавиту</button>
+                    <button id="sort_btn2" type="submit" name="sort_type" value="ascend">По возрастанию цены</button>
+                    <button id="sort_btn3" type="submit" name="sort_type" value="descend">По убыванию цены</button>
+                </form>
                 <div class ="cart">
                     <div  class="products">
                         <!-- <div th:insert="~{plant :: plant}"></div> -->

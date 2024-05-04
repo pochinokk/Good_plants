@@ -23,4 +23,5 @@ public class CustomerDetailsService implements UserDetailsService {
         return customer.map(CustomerDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException(username + "не найден"));
     }
+
 }

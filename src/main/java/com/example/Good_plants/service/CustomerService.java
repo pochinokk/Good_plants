@@ -34,6 +34,8 @@ public class CustomerService {
         }
         return false;
     }
+
+
     public Long getIDByName(String username) {
         List<Customer> customers = customerRepository.findAll();
         for (Customer cust : customers){
@@ -46,10 +48,25 @@ public class CustomerService {
     public List<Customer> readAll() {
         return customerRepository.findAll();
     }
-    public Customer update(Customer customer) {
-        return customerRepository.save(customer);
-    }
     public void delete(Long id) {
         customerRepository.deleteById(id);
+    }
+
+    public void changePassword(String username, String newPassword) {
+        List<Customer> customers = customerRepository.findAll();
+        Customer customer = null;
+        for (Customer cust : customers){
+            if (cust.getName().equals(username)){
+                customer = cust;
+                break;
+            }
+        }
+        if (customer != null) {
+            System.out.println(customer.getName());
+            customer.setPassword(passwordEncoder.encode(newPassword));
+            customerRepository.save(customer);
+        } else {
+            System.out.println("Пользователь не найден");
+        }
     }
 }

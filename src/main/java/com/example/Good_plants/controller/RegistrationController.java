@@ -40,13 +40,16 @@ public class RegistrationController {
             redirectAttributes.addFlashAttribute("er", "Извините, имя занято");
             return "redirect:/registration";
         }
-//        customerService.create(username, password, "USER", tel, address);
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println("USER");
-        System.out.println(tel);
-        System.out.println(address);
+        customerService.create(username, password, "USER", tel, address);
+//        System.out.println(username);
+//        System.out.println(password);
+//        System.out.println("USER");
+//        System.out.println(tel);
+//        System.out.println(address);
         redirectAttributes.addFlashAttribute("mes", "Вы успешно зарегистрировались");
         return "redirect:/authentication";
     }
 }
+
+
+
