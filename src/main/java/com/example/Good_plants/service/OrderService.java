@@ -58,7 +58,6 @@ public class OrderService {
             }
         }
         List<Product> positions = productRepository.findAll();
-        System.out.println(positions);
         for (List<String> pair : order_list) {
             String productName = pair.get(0);
             int quantity = Integer.parseInt(pair.get(1));

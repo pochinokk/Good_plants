@@ -41,11 +41,11 @@ public class RegistrationController {
             return "redirect:/registration";
         }
         customerService.create(username, password, "USER", tel, address);
-//        System.out.println(username);
-//        System.out.println(password);
-//        System.out.println("USER");
-//        System.out.println(tel);
-//        System.out.println(address);
+        System.out.println(username);
+        System.out.println(password);
+        System.out.println("USER");
+        System.out.println(tel);
+        System.out.println(address);
         redirectAttributes.addFlashAttribute("mes", "Вы успешно зарегистрировались");
         return "redirect:/authentication";
     }

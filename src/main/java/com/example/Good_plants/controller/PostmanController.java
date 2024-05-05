@@ -45,11 +45,11 @@ public class PostmanController {
     @PostMapping(path = "/add_customer")
     public ResponseEntity<String> createCustomer(@RequestBody Customer customer) {
         try {
-//            customerService.create(customer.getName(),
-//                    customer.getPassword(),
-//                    customer.getRoles(),
-//                    customer.getTel(),
-//                    customer.getAddress());
+            customerService.create(customer.getName(),
+                    customer.getPassword(),
+                    customer.getRoles(),
+                    customer.getTel(),
+                    customer.getAddress());
             return ResponseEntity.status(HttpStatus.CREATED).body("Пользователь успешно создан");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

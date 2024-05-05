@@ -81,7 +81,7 @@ public class AccountController {
                                Model model, RedirectAttributes redirectAttributes) {
 
         if (orderService.exists(order_id)) {
-//            orderService.delete(order_id);
+            orderService.delete(order_id);
             redirectAttributes.addFlashAttribute("mes", "Заказ успешно удален");
             return "redirect:/account";
         } else {
